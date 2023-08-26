@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMX Example</title>
+    <style>
+        html, body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 20pt;
+            margin: 0;
+            padding: 0;
+        }
+        .card {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            margin: 20px;
+            border: 2px solid #666;
+            border-radius: 20px;
+        }
+
+        .card textarea {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 20pt;
+            border: 2px solid #666;
+            width: 90%;
+        }
+        button {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 20pt;
+            margin: 5px;
+            padding: 5px;
+            border: 2px solid #666;
+            border-radius: 4px;
+        }
+        #button_row {
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+            padding: 10px 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="card_list" 
+        hx-get="http://localhost:8080/notes.php"
+        hx-trigger="load delay:100ms"
+        hx-swap="innerHTML"
+        >  
+    </div>
+    <div id="button_row">
+        <button id="new" 
+            hx-post="http://localhost:8080/notes.php"
+            hx-target="#card_list"
+            hx-swap="innerHTML"
+            >
+            New
+        </button>
+    </div>
+    <script src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
+</body>
+</html>
